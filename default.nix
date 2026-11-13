@@ -10,16 +10,10 @@
 { pkgs ? import <nixpkgs> { } }:
 
 {
-  # The `lib`, `overlays`, `nixosModules`, `homeModules`,
-  # `darwinModules` and `flakeModules` names are special
-  lib = import ./lib { inherit pkgs; }; # functions
-  nixosModules = import ./nixos-modules; # NixOS modules
-  # homeModules = { }; # Home Manager modules
-  # darwinModules = { }; # nix-darwin modules
-  # flakeModules = { }; # flake-parts modules
-  overlays = import ./overlays; # nixpkgs overlays
+  lib = import ./lib { inherit pkgs; };
+  modules = import ./nixos-modules;
+  nixosModules = import ./nixos-modules;
+  overlays = import ./overlays;
 
-  example-package = pkgs.callPackage ./pkgs/example-package { };
-  # some-qt5-package = pkgs.libsForQt5.callPackage ./pkgs/some-qt5-package { };
-  # ...
+  injectd = pkgs.callPackage ./pkgs/injectd { };
 }
